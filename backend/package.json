@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Deploy express app to vercel",
+  "description": "",
   "main": "app.js",
   "engines": {
     "node": "14.x"
