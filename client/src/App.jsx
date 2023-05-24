@@ -23,7 +23,7 @@ export default App
 
 {/* 
   Bu bölümde Real Time olarak çalışan Back-End üzerinde nasıl çalışabileceğimizi öğreneceğiz. Örnek uygulama ile ekran
-    ortasında bir tane buton olacak ve bir de renk seçimi yapabileceğimiz renk picture olacak, buradan bir renk seçilip
+    ortasında bir tane buton olacak ve bir de renk seçimi yapabileceğimiz color picture olacak, buradan bir renk seçilip
     butona basıldığı anda web sayfasında olan bütün kullanıcılara anlık olarak sayfa yenileme işlemi olmadan
     gerçek zamanlı olarak o renk gösterilecektir. React üzerinde Real Time çalışan Back-End ile nasıl çalışabilirizi
     öğrenmek için faydalı ve temel bir uygulama olacaktır. 
