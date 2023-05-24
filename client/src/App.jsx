@@ -15,6 +15,9 @@ function App() {
   return (
     <div className='bg-sky-500' style={{backgroundColor: activeColor}}>
       <Picker activeColor={activeColor}/>
+      <div>
+        talha bayyar
+      </div>
     </div>
   )
 }
