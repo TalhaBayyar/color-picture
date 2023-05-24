@@ -1,52 +1,41 @@
-const { Server } = require("socket.io");
+const app = require("express")();
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
 const cors = require("cors");
 
-module.exports = (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
-  res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS,PATCH,DELETE,POST,PUT");
+app.use(cors())
 
-  if (req.method === "OPTIONS") {
-    res.status(200).end();
-    return;
-  }
+app.get("/", (req, res) => {
+    res.send("hello");
+})
 
-  if (req.url === "/") {
-    res.statusCode = 200;
-    res.setHeader("Content-Type", "text/plain");
-    res.end("Hello");
-    return;
-  }
+let lastColor = "#282c34";
 
-  // Socket.IO sunucusunu oluşturma
-  const io = new Server();
-
-  io.on("connection", (socket) => {
+io.on("connection", (socket) => {
     console.log("Bir Kullanıcı Bağlandı");
 
     // Bağlantı kurulan istemciye son renk değerini gönderme
-    socket.emit("receive", lastColor);
+    socket.emit("receive", lastColor)
 
     // "newColor" olayını dinleme
     socket.on("newColor", (color) => {
-      console.log(color);
+        console.log(color);
 
-      // Son renk değerini güncelleme
-      lastColor = color;
+        // Son renk değerini güncelleme
+        lastColor = color;
 
-      // Tüm istemcilere yeni renk değerini yayınlama
-      io.emit("receive", color);
-    });
+        // Tüm istemcilere yeni renk değerini yayınlama
+        io.emit("receive", color);
+    })
 
     socket.on("disconnect", () => {
-      console.log("Bir Kullanıcı Ayrıldı");
-    });
-  });
+        console.log("Bir Kullanıcı Ayrıldı")
+    })
+   
 
-  io.attach(res.socket);
-  res.socket.server = http;
-};
+})
 
+http.listen(process.env.PORT || 5173, () => console.log("Server is up 🚀🚀"))
 
 /*                                                                                              Bismillahirrahmanirrahim                    
   Socket.IO, gerçek zamanlı web uygulamaları geliştirmek için kullanılan bir Javascript kütüphanesidir. İstemci ve sunucu 
