@@ -35,7 +35,7 @@ io.on("connection", (socket) => {
 
 })
 
-http.listen(5173, () => console.log("Server is up 🚀🚀"))
+http.listen(process.env.PORT || 5173, () => console.log("Server is up 🚀🚀"))
 
 /*                                                                                              Bismillahirrahmanirrahim                    
   Socket.IO, gerçek zamanlı web uygulamaları geliştirmek için kullanılan bir Javascript kütüphanesidir. İstemci ve sunucu 
